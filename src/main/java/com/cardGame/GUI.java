@@ -35,6 +35,30 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
        }catch(IOException e) {
     	   e.printStackTrace();
        }
+
+	   JPanel mainPanel = new JPanel();
+	   mainPanel.setOpaque(false);
+	   mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
+	   mainPanel.setSize(new Dimension(900,700));
+	   mainPanel.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
+
+
+	   JPanel panel = new JPanel();
+	   panel.setOpaque(false);
+	   panel.setLocation(0,0);
+	   panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+	   panel.setSize(new Dimension(900,150));
+	   panel.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
+	   mainPanel.add(panel);
+
+	   JPanel panel2 = new JPanel();
+	   panel2.setLocation(0, 150);
+	   panel2.setOpaque(false);
+	   panel2.setSize(new Dimension(900,550));
+	   panel2.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE));
+	   mainPanel.add(panel2);
+
+	   add(mainPanel);
        
        /*******
         * This is just a test to make sure images are being read correctly on your machine. Please replace
@@ -43,7 +67,8 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
         */
         Card card = new Card(2, Card.Suit.Diamonds);
         System.out.println(card);
-        this.add(card);    
+        this.add(card);
+
 
         this.setVisible(true);
     }
