@@ -1,4 +1,5 @@
 package com.cardGame;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -14,111 +15,105 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 
-
-public class GUI extends JFrame implements ActionListener, MouseListener, MouseMotionListener{
+public class GUI extends JFrame implements ActionListener, MouseListener, MouseMotionListener {
 
 	private Solitaire game;
-	public static String IMG_PATH = System.getProperty("user.dir")+"/src/main/java/com/cardGame/resources/";
-   public GUI(Solitaire game){
-	   this.game= game;
-        //Create and set up the window.
-       setTitle("Solitaire");
-       setSize(900,700);
-       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       
-       // this supplies the background
-       try {
-		Image blackImg = ImageIO.read(new File(IMG_PATH+"background.jpg"));
-		
-		setContentPane(new ImagePanel(blackImg));
+	public static String IMG_PATH = System.getProperty("user.dir") + "/src/main/java/com/cardGame/resources/";
 
-       }catch(IOException e) {
-    	   e.printStackTrace();
-       }
+	public GUI(Solitaire game) {
+		this.game = game;
+		// Create and set up the window.
+		setTitle("Solitaire");
+		setSize(900, 700);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	   JPanel mainPanel = new JPanel();
-	   mainPanel.setOpaque(false);
-	   mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
-	   mainPanel.setSize(new Dimension(900,700));
-	   mainPanel.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
+		// this supplies the background
+		try {
+			Image blackImg = ImageIO.read(new File(IMG_PATH + "background.jpg"));
 
+			setContentPane(new ImagePanel(blackImg));
 
-	   JPanel panel = new JPanel();
-	   panel.setOpaque(false);
-	   panel.setLocation(0,0);
-	   panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-	   panel.setSize(new Dimension(900,150));
-	   panel.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
-	   mainPanel.add(panel);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-	   JPanel panel2 = new JPanel();
-	   panel2.setLocation(0, 150);
-	   panel2.setOpaque(false);
-	   panel2.setSize(new Dimension(900,550));
-	   panel2.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE));
-	   mainPanel.add(panel2);
-
-	   add(mainPanel);
-       
-       /*******
-        * This is just a test to make sure images are being read correctly on your machine. Please replace
-        * once you have confirmed that the card shows up properly. The code below should allow you to play the solitare
-        * game once it's fully created.
-        */
-        Card card = new Card(2, Card.Suit.Diamonds);
-        System.out.println(card);
-        this.add(card);
+		JPanel mainPanel = new JPanel(new GridLayout(3, 1));
+		JPanel top = new JPanel();
+		top.setOpaque(false);
+		top.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE));
+		mainPanel.add(top);
+		JPanel middle = new JPanel();
+		middle.setOpaque(false);
+		middle.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.YELLOW));
+		mainPanel.add(middle);
 
 
-        this.setVisible(true);
-    }
 
+		mainPanel.setOpaque(false);
+		mainPanel.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
+		mainPanel.setSize(900, 600);
+
+		this.add(mainPanel);
+
+		/*******
+		 * This is just a test to make sure images are being read correctly on your
+		 * machine. Please replace
+		 * once you have confirmed that the card shows up properly. The code below
+		 * should allow you to play the solitare
+		 * game once it's fully created.
+		 */
+		Card card = new Card(2, Card.Suit.Diamonds);
+		System.out.println(card);
+		top.add(card);
+
+		this.setVisible(true);
+	}
 
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
