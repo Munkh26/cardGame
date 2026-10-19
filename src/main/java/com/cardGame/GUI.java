@@ -38,20 +38,25 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
 		}
 
 		JPanel mainPanel = new JPanel(new GridLayout(3, 1));
+		mainPanel.setOpaque(false);
+		mainPanel.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
+		mainPanel.setSize(900, 600);
+
 		JPanel top = new JPanel();
 		top.setOpaque(false);
 		top.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE));
 		mainPanel.add(top);
+
 		JPanel middle = new JPanel();
 		middle.setOpaque(false);
 		middle.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.YELLOW));
 		mainPanel.add(middle);
+		
+		JPanel bottom = new JPanel();
+		bottom.setOpaque(false);
+		bottom.setBorder(BorderFactory.createMatteBorder(4,4,4,4, Color.GREEN));
+		mainPanel.add(bottom);
 
-
-
-		mainPanel.setOpaque(false);
-		mainPanel.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
-		mainPanel.setSize(900, 600);
 
 		this.add(mainPanel);
 
