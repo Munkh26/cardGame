@@ -42,21 +42,23 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
 			e.printStackTrace();
 		}
 
+		//Main Panel which will have other panels added to it
 		JPanel mainPanel = new JPanel(new GridLayout(2, 1));
 		mainPanel.setOpaque(false);
 		mainPanel.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
-		mainPanel.setSize(900, 600);
-
+		mainPanel.setSize(900, 570);
+		
+		//Top Panel
 		JPanel top = new JPanel();
 		top.setOpaque(false);
 		top.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE));
 		mainPanel.add(top);
-		
+
+		//Bottom Panel
 		JPanel bottom = new JPanel();
 		bottom.setOpaque(false);
 		bottom.setBorder(BorderFactory.createMatteBorder(4,4,4,4, Color.YELLOW));
 		mainPanel.add(bottom);
-
 
 		this.add(mainPanel);
 
@@ -67,25 +69,24 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
 		 * should allow you to play the solitare
 		 * game once it's fully created.
 		 */
+
+		//Making a stack of cards
 		Stack<Card> stackIn = new Stack<Card>(); 
 		stackIn.push(new Card(2, Card.Suit.Diamonds));
 		stackIn.push(new Card(4, Card.Suit.Spades));
 		stackIn.push(new Card(6, Card.Suit.Clubs));
-				
-		//Card card = new Card(2, Card.Suit.Diamonds);
-		//System.out.println(card);
-		//top.add(card);
 
 		JLayeredPane layerPane = drawPile(stackIn);
 		layerPane.setPreferredSize(new Dimension(200, 300));
         layerPane.setBounds(0, 0, 200, 300);
 		top.add(layerPane);
 
-
 		this.setVisible(true);
 
 	}
 
+	//Pre-condition: Puts in a stack of cards
+	//Pos-condition: Returns a JLayeredPane which will have the cards from top of the stack to the bottom with each card's position lowering to the screen
 	public JLayeredPane drawPile(Stack<Card> stackIn) {
 		JLayeredPane pane = new JLayeredPane();
 		Object cards[];
@@ -95,7 +96,7 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
 			Card card = (Card) cards[i];
 			System.out.println(yOffSet);
 			card.setBounds(0, yOffSet, 100, 145);
-			pane.add(card);
+			pane.add(card, Integer.valueOf(cards.length - i));
 			yOffSet += 20;
 		}
 		return pane;
