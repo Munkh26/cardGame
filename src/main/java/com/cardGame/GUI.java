@@ -1,3 +1,7 @@
+//Name: Munkhsoyombo Munkhbat
+//Date: 10/21/2026
+//Description: Draws the game on the screen, and this is used to manage/layout how its drawn.
+
 package com.cardGame;
 
 import javax.imageio.ImageIO;
@@ -66,6 +70,7 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
 		Stack<Card> stackIn = new Stack<Card>(); 
 		stackIn.push(new Card(2, Card.Suit.Diamonds));
 		stackIn.push(new Card(4, Card.Suit.Spades));
+		stackIn.push(new Card(6, Card.Suit.Clubs));
 				
 		//Card card = new Card(2, Card.Suit.Diamonds);
 		//System.out.println(card);
@@ -84,9 +89,14 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
 	public JLayeredPane drawPile(Stack<Card> stackIn) {
 		JLayeredPane pane = new JLayeredPane();
 		Object cards[];
+		int yOffSet = 0;
 		cards = stackIn.toArray(); //please note we convert this stack to an array so that we can iterate through it backwards while drawing. You’ll need to cast each element inside cards to a <Card> in order to use the methods to adjust their position
 		for (int i = cards.length - 1; i >= 0; i--) {
-			pane.add((Card) cards[i]);
+			Card card = (Card) cards[i];
+			System.out.println(yOffSet);
+			card.setBounds(0, yOffSet, 100, 145);
+			pane.add(card);
+			yOffSet += 20;
 		}
 		return pane;
 	}
