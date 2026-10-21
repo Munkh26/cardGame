@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
+import java.util.Stack;
 
 public class GUI extends JFrame implements ActionListener, MouseListener, MouseMotionListener {
 
@@ -37,7 +38,7 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
 			e.printStackTrace();
 		}
 
-		JPanel mainPanel = new JPanel(new GridLayout(3, 1));
+		JPanel mainPanel = new JPanel(new GridLayout(2, 1));
 		mainPanel.setOpaque(false);
 		mainPanel.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
 		mainPanel.setSize(900, 600);
@@ -46,15 +47,10 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
 		top.setOpaque(false);
 		top.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE));
 		mainPanel.add(top);
-
-		JPanel middle = new JPanel();
-		middle.setOpaque(false);
-		middle.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.YELLOW));
-		mainPanel.add(middle);
 		
 		JPanel bottom = new JPanel();
 		bottom.setOpaque(false);
-		bottom.setBorder(BorderFactory.createMatteBorder(4,4,4,4, Color.GREEN));
+		bottom.setBorder(BorderFactory.createMatteBorder(4,4,4,4, Color.YELLOW));
 		mainPanel.add(bottom);
 
 
@@ -67,6 +63,21 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
 		 * should allow you to play the solitare
 		 * game once it's fully created.
 		 */
+		Stack<Card> stackIn = new Stack<Card>(); 
+		stackIn.push(new Card(2, Card.Suit.Diamonds));
+		stackIn.push(new Card(4, Card.Suit.Spades));
+
+		public JLayeredPane drawPile(Stack<Card> stackIn) {
+			JLayeredPane pane = new JLayeredPane();
+			Object cards[];
+			cards = stackIn.toArray(); //please note we convert this stack to an array so that we can iterate through it backwards while drawing. You’ll need to cast each element inside cards to a <Card> in order to use the methods to adjust their position
+			for (int i = cards.length; i > 0; i--) {
+				pane.add(cards[i]);
+			}
+			return pane;
+
+		}
+		
 		Card card = new Card(2, Card.Suit.Diamonds);
 		System.out.println(card);
 		top.add(card);
