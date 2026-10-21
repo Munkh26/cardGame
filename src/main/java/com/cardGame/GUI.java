@@ -66,23 +66,29 @@ public class GUI extends JFrame implements ActionListener, MouseListener, MouseM
 		Stack<Card> stackIn = new Stack<Card>(); 
 		stackIn.push(new Card(2, Card.Suit.Diamonds));
 		stackIn.push(new Card(4, Card.Suit.Spades));
+				
+		//Card card = new Card(2, Card.Suit.Diamonds);
+		//System.out.println(card);
+		//top.add(card);
 
-		public JLayeredPane drawPile(Stack<Card> stackIn) {
-			JLayeredPane pane = new JLayeredPane();
-			Object cards[];
-			cards = stackIn.toArray(); //please note we convert this stack to an array so that we can iterate through it backwards while drawing. You’ll need to cast each element inside cards to a <Card> in order to use the methods to adjust their position
-			for (int i = cards.length; i > 0; i--) {
-				pane.add(cards[i]);
-			}
-			return pane;
+		JLayeredPane layerPane = drawPile(stackIn);
+		layerPane.setPreferredSize(new Dimension(200, 300));
+        layerPane.setBounds(0, 0, 200, 300);
+		top.add(layerPane);
 
-		}
-		
-		Card card = new Card(2, Card.Suit.Diamonds);
-		System.out.println(card);
-		top.add(card);
 
 		this.setVisible(true);
+
+	}
+
+	public JLayeredPane drawPile(Stack<Card> stackIn) {
+		JLayeredPane pane = new JLayeredPane();
+		Object cards[];
+		cards = stackIn.toArray(); //please note we convert this stack to an array so that we can iterate through it backwards while drawing. You’ll need to cast each element inside cards to a <Card> in order to use the methods to adjust their position
+		for (int i = cards.length - 1; i >= 0; i--) {
+			pane.add((Card) cards[i]);
+		}
+		return pane;
 	}
 
 	@Override
